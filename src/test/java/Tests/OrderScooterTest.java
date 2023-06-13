@@ -1,25 +1,41 @@
-import io.github.bonigarcia.wdm.WebDriverManager;
-import org.junit.Assert;
-import org.junit.Test;
-import pageobject.MainPage;
-import pageobject.OrderForm;
+package Tests;
 
-public class OrderScooterTest extends BasePageTest {
+import io.github.bonigarcia.wdm.WebDriverManager;
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import pageobjects.MainPage;
+import pageobjects.OrderForm;
+
+public class OrderScooterTest {
+    WebDriver webDriver;
+
+    @Before
+    public void setupAll() {
+//        WebDriverManager.chromedriver().setup();
+//        driver = new ChromeDriver();
+        WebDriverManager.firefoxdriver().setup();
+        webDriver = new FirefoxDriver();
+    }
+
     @Test
     public void shouldBeOrderScooterOnButtonPageHeaderWithRequiredFieldTest() {
         OrderForm orderPage = new OrderForm(webDriver);
         MainPage mainPage = new MainPage(webDriver);
         mainPage.open();
+        mainPage.clickButtonCookies();
         mainPage.clickOrderButton();
-        orderPage.enterOrderName("Мария");
-        orderPage.enterOrderLastName("Иванова");
-        orderPage.enterOrderAddress("Вавилова д.4 кв.2");
-        orderPage.enterMetroStation("Лубянка");
+        orderPage.enterOrderName("Элла");
+        orderPage.enterOrderLastName("Элла");
+        orderPage.enterOrderAddress("ул. Яснополянская, д.7, кв. 98");
+        orderPage.enterMetroStation("Рязанский проспект");
         orderPage.clickMetroStationFull();
-        orderPage.enterNumberPhone("79267778522");
+        orderPage.enterNumberPhone("79853967227");
         orderPage.clickOrderButtonNext();
-        orderPage.enterOrderTime("16.09.2022");
-        orderPage.clickOrderTime();
+        orderPage.enterOrderTime("22.06.2023");
         orderPage.clickOrderRentalPeriod();
         orderPage.enterOrderRentalFourDay();
         orderPage.clickOrderButtonOnOrderPage();
@@ -33,20 +49,20 @@ public class OrderScooterTest extends BasePageTest {
         OrderForm orderPage = new OrderForm(webDriver);
         MainPage mainPage = new MainPage(webDriver);
         mainPage.open();
+        mainPage.clickButtonCookies();
         mainPage.clickOrderButton();
-        orderPage.enterOrderName("Игорь");
-        orderPage.enterOrderLastName("Петров");
-        orderPage.enterOrderAddress("Москва");
-        orderPage.enterMetroStation("Борисово");
+        orderPage.enterOrderName("Иван");
+        orderPage.enterOrderLastName("Тихонов");
+        orderPage.enterOrderAddress("Зеленоград");
+        orderPage.enterMetroStation("Динамо");
         orderPage.clickMetroStationFull();
-        orderPage.enterNumberPhone("11111111111");
+        orderPage.enterNumberPhone("79998887766");
         orderPage.clickOrderButtonNext();
-        orderPage.enterOrderTime("16.09.2022");
-        orderPage.clickOrderTime();
+        orderPage.enterOrderTime("13.07.2023");
         orderPage.clickOrderRentalPeriod();
         orderPage.enterOrderRentalTwoDay();
         orderPage.clickCheckBoxGreyColorScooter();
-        orderPage.enterOrderComment("связываться по номеру +71231235522");
+        orderPage.enterOrderComment("захватите, пож., поесть что-нибудь");
         orderPage.clickOrderButtonOnOrderPage();
         orderPage.clickOrderConfirmationButton();
         boolean isDisplayed = orderPage.checkOrderConfirmationIsDisplayed();
@@ -60,17 +76,17 @@ public class OrderScooterTest extends BasePageTest {
         mainPage.open();
         mainPage.clickButtonCookies();
         mainPage.clickOrderButtonOnMiddlePage();
-        orderPage.enterOrderName("Иван");
-        orderPage.enterOrderLastName("Смирнов");
-        orderPage.enterOrderAddress("Центральная 7");
-        orderPage.enterMetroStation("Полянка");
+        orderPage.enterOrderName("Ангелина");
+        orderPage.enterOrderLastName("Коломникова");
+        orderPage.enterOrderAddress("Зеленоград, корпус 2014, кв. 101");
+        orderPage.enterMetroStation("Речной вокзал");
         orderPage.clickMetroStationFull();
-        orderPage.enterNumberPhone("00000000000");
+        orderPage.enterNumberPhone("79111111111");
         orderPage.clickOrderButtonNext();
-        orderPage.enterOrderTime("16.09.2022");
-        orderPage.clickOrderTime();
+        orderPage.enterOrderTime("01.08.2023");
         orderPage.clickOrderRentalPeriod();
         orderPage.enterOrderRentalTwoDay();
+        orderPage.enterOrderComment("");
         orderPage.clickOrderButtonOnOrderPage();
         orderPage.clickOrderConfirmationButton();
         boolean isDisplayed = orderPage.checkOrderConfirmationIsDisplayed();
@@ -84,22 +100,26 @@ public class OrderScooterTest extends BasePageTest {
         mainPage.open();
         mainPage.clickButtonCookies();
         mainPage.clickOrderButtonOnMiddlePage();
-        orderPage.enterOrderName("Алексей");
-        orderPage.enterOrderLastName("Смит");
-        orderPage.enterOrderAddress("Моховая 1");
-        orderPage.enterMetroStation("Речной вокзал");
+        orderPage.enterOrderName("Яя");
+        orderPage.enterOrderLastName("СноваЯ");
+        orderPage.enterOrderAddress("Кремль");
+        orderPage.enterMetroStation("Лубянка");
         orderPage.clickMetroStationFull();
-        orderPage.enterNumberPhone("12345678899");
+        orderPage.enterNumberPhone("12345678991");
         orderPage.clickOrderButtonNext();
-        orderPage.enterOrderTime("16.09.2022");
-        orderPage.clickOrderTime();
+        orderPage.enterOrderTime("16.06.2023");
         orderPage.clickOrderRentalPeriod();
         orderPage.enterOrderRentalFourDay();
         orderPage.clickCheckBoxBlackColorScooter();
-        orderPage.enterOrderComment("в домофон не звонить");
         orderPage.clickOrderButtonOnOrderPage();
         orderPage.clickOrderConfirmationButton();
         boolean isDisplayed = orderPage.checkOrderConfirmationIsDisplayed();
         Assert.assertTrue("Confirmation is not displayed", isDisplayed);
+    }
+
+    @After
+    public void tearDown() {
+        // Закрыть браузер
+        webDriver.quit();
     }
 }

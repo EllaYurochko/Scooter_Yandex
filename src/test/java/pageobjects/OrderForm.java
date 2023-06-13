@@ -1,11 +1,13 @@
-package pageobject;
+package pageobjects;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 
 
-public class OrderForm extends BasePage {
+public class OrderForm {
 
+    private final WebDriver webDriver;
     //локатор поля ввода "Имя" на странице заказа
     private By orderNameField = By.xpath("//input[@placeholder='* Имя']");
 
@@ -61,7 +63,7 @@ public class OrderForm extends BasePage {
     private By orderCommentField = By.xpath("//input[@placeholder='Комментарий для курьера']");
 
     public OrderForm(WebDriver webDriver) {
-        super(webDriver);
+        this.webDriver = webDriver;
     }
 
     public void enterOrderName(String text) {
@@ -93,7 +95,7 @@ public class OrderForm extends BasePage {
     }
 
     public void enterOrderTime(String text) {
-        webDriver.findElement(orderTime).sendKeys(text);
+        webDriver.findElement(orderTime).sendKeys(text, Keys.ENTER);
     }
 
     public void clickOrderTime() {

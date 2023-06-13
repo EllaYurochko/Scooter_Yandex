@@ -1,11 +1,26 @@
-import io.github.bonigarcia.wdm.WebDriverManager;
+package Tests;
 import static org.hamcrest.CoreMatchers.is;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.hamcrest.MatcherAssert;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
-import pageobject.MainPage;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import pageobjects.MainPage;
 
-public class DropDownQuestionTest extends BasePageTest {
+public class DropDownQuestionTest {
+
+    WebDriver webDriver;
+    @Before
+    public void setupAll() {
+//        WebDriverManager.chromedriver().setup();
+//        driver = new ChromeDriver();
+        WebDriverManager.firefoxdriver().setup();
+        webDriver = new FirefoxDriver();
+    }
+
     @Test
     public void shouldBeOpenDropDownOneQuestionTest() {
         MainPage mainPage = new MainPage(webDriver);
@@ -84,5 +99,11 @@ public class DropDownQuestionTest extends BasePageTest {
         mainPage.clickDropDownEightQuestion();
         String textEightDropDown = mainPage.getTextDropDownEightQuestion();
         MatcherAssert.assertThat("Да, обязательно. Всем самокатов! И Москве, и Московской области.", is(textEightDropDown));
+    }
+
+    @After
+    public void tearDown() {
+        // Закрыть браузер
+        webDriver.quit();
     }
 }

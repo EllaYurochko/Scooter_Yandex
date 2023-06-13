@@ -1,10 +1,12 @@
-package pageobject;
+package pageobjects;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class MainPage extends BasePage {
+public class MainPage {
     // локатор кнопки "Заказать" в заголовке главной страницы
+
+    private final WebDriver webDriver;
     private By orderButton = By.xpath("//button[@class='Button_Button__ra12g']");
 
     //локатор кнопки "Заказать" в середине главной страницы
@@ -62,7 +64,7 @@ public class MainPage extends BasePage {
     private By buttonCookies = By.id("rcc-confirm-button");
 
     public MainPage(WebDriver webDriver) {
-        super(webDriver);
+        this.webDriver = webDriver;
     }
 
     public void open() {
@@ -76,6 +78,7 @@ public class MainPage extends BasePage {
     public void clickOrderButtonOnMiddlePage() {
         webDriver.findElement(orderButtonOnMiddlePage).click();
     }
+
 
     public void clickDropDownOneQuestion() {
         webDriver.findElement(dropDownOneQuestion).click();
