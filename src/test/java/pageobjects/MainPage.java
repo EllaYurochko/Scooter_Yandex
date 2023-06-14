@@ -4,9 +4,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class MainPage {
-    // локатор кнопки "Заказать" в заголовке главной страницы
+    private static WebDriver webDriver;
 
-    private final WebDriver webDriver;
+    // локатор кнопки "Заказать" в заголовке главной страницы
     private By orderButton = By.xpath("//button[@class='Button_Button__ra12g']");
 
     //локатор кнопки "Заказать" в середине главной страницы

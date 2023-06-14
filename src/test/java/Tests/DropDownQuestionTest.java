@@ -1,4 +1,5 @@
 package Tests;
+import static java.util.concurrent.TimeUnit.SECONDS;
 import static org.hamcrest.CoreMatchers.is;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -19,6 +20,7 @@ public class DropDownQuestionTest {
 //        driver = new ChromeDriver();
         WebDriverManager.firefoxdriver().setup();
         webDriver = new FirefoxDriver();
+        webDriver.manage().timeouts().implicitlyWait(5, SECONDS);
     }
 
     @Test
